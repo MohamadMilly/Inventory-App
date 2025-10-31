@@ -1,0 +1,69 @@
+<nav class="bg-yellow-200 text-gray-800 shadow-md px-4 sm:py-6 pt-6">
+  <div class="w-full">
+    <!-- Desktop section -->
+    <div class="hidden sm:flex sm:items-center sm:justify-between sm:space-x-6">
+      <h1 class="text-2xl font-serif font-light">Milly's Store</h1>
+      <div class="group relative">
+        <button class="p-2 flex justify-between items-center">
+          Categories
+          <svg class="group-hover:hidden fill-gray-700" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
+          </svg>
+          <svg class="hidden group-hover:block fill-gray-700" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+            <path d="M480-528 296-344l-56-56 240-240 240 240-56 56-184-184Z"/>
+          </svg>
+        </button>
+        <ul class="opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 ease-in-out absolute bg-[#f3f4f645] rounded p-2 backdrop-blur-md w-44">
+          <li class="hover:underline"><a tabindex="-1" href="/">All</a></li>
+          <% links.map(link => { %>
+            <li class="flex justify-between items-center space-x-2 hover:underline">
+              <a href="/categories/<%= link.category %>"><%= link.category %></a>
+              <form class="flex justify-center items-center" action="/categories/<%= link.id %>/delete" method="POST">
+                <button tabindex="=-1" class="cursor-pointer" type="submit">
+                  <svg class="fill-red-600" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px">
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.556.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                  </svg>
+                </button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+      <a class="bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500 transition-all duration-300 ease-in-out outline-2 outline-offset-2 outline-none focus:outline-blue-500" href="/categories/add">New Category</a>
+    </div>
+
+    <!-- Mobile section -->
+    <div class="sm:hidden flex flex-col items-center space-y-4">
+      <h1 class="text-2xl font-serif font-light">Milly's Store</h1>
+      <button id="mainToggleBtn" class="flex items-center justify-center">
+        <svg id="mainArrow" class="h-6 w-6 fill-gray-700 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+          <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
+        </svg>
+      </button>
+      <div id="mainMenu" class="w-full flex flex-col items-center space-y-4 p-2">
+        <a href="/categories/add" class="text-gray-600 underline mb-2 bg-[#f9fafb5f] p-2 rounded">New Category</a>
+        <button id="categoriesToggleBtn" class="flex items-center justify-center">
+          <span class="mr-2">Categories</span>
+          <svg id="categoriesArrow" class="h-5 w-5 fill-gray-700 transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+            <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/>
+          </svg>
+        </button>
+        <ul id="categoriesMenu" class="hidden w-full bg-[#f3f4f645] backdrop-blur-md rounded p-4 shadow-md space-y-2">
+          <li class="hover:underline"><a href="/">All</a></li>
+          <% links.map(link => { %>
+            <li class="flex justify-between items-center hover:underline">
+              <a href="/categories/<%= link.category %>"><%= link.category %></a>
+              <form action="/categories/<%= link.id %>/delete" method="POST">
+                <button type="submit">
+                  <svg class="fill-red-600" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="20px">
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/>
+                  </svg>
+                </button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

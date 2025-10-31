@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/output.css" rel="stylesheet">
+    <title><%= title %></title>
+  </head>
+  <body>
+    <%- include("navbar",{links:links}) %>
+    
+    <main class="p-6">
+      <h2 class="text-2xl font-medium mb-6"><%= title %></h2>
+    <a class="p-2 inline-block bg-green-400 text-white rounded hover:bg-green-500 transition-all duration-300 ease-in-out focus:outline-green-500 outline-2 outline-offset-2" href="/items/add">Add item</a>
+    <section class="bg-gray-50 my-4 p-4">
+        <ul class="flex flex-wrap gap-2 justify-center">
+           <% if(items.length !== 0) { %>
+            <% items.map(item => { %>
+             <li class="px-4 py-5 bg-amber-100 rounded w-96 shadow-sm">
+                <h3 class="flex items-center space-x-2 mb-2">
+                  <svg class="fill-amber-600" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
+                    <span class="font-medium text-lg"><%= item.name %></span>
+                </h3>
+                <p>Price : <%= item.price %>$</p>
+                <p>Quantity : <%= item.quantity %></p>
+                <p class="my-2 flex flex-wrap gap-1">
+                  <% if(item.categories) { %> 
+                <% item.categories.map((ItemCategory,index) => { %>
+                 <span style="background-color: hsl(<%= index * 40 %>, 70%, 85%)" class="text-gray-900 px-2 py-1 rounded text-sm"><%= ItemCategory %></span>
+                <% }) %>
+                <% } else { %>
+                  <span class="text-red-500">Not in a category yet</span>
+                <% } %>
+                </p>
+                <div class="flex justify-between items-center my-4">
+                  <a class="flex items-center space-x-1 text-green-400 hover:underline bg-amber-50 rounded p-1" href="/items/<%= item.id %>/update">
+                    <svg class="fill-green-400" xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960" width="24px"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
+                    <span>Update Item</span>
+                  </a>
+                <form action="/items/<%= item.id %>/delete" method="POST">
+                  <button class="text-red-500 hover:underline flex items-center space-x-1 bg-amber-50 rounded p-1 cursor-pointer" type="submit">
+                    <svg class="fill-red-600" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="20px"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                    <span>Delete Item</span>
+                  </button>
+                </form>
+                </div>
+                
+             </li>
+          <%  }) %>
+          <% } else { %> 
+            <p class="text-lg text-gray-800">No Items in this category </p>
+            
+           <% } %>
+        </ul>
+    </section>
+    </main>
+   <script>
+  const mainToggleBtn = document.getElementById('mainToggleBtn');
+  const mainMenu = document.getElementById('mainMenu');
+  const mainArrow = document.getElementById('mainArrow');
+
+  const categoriesToggleBtn = document.getElementById('categoriesToggleBtn');
+  const categoriesMenu = document.getElementById('categoriesMenu');
+  const categoriesArrow = document.getElementById('categoriesArrow');
+
+  mainToggleBtn.addEventListener('click', () => {
+    mainMenu.classList.toggle('hidden');
+    mainArrow.classList.toggle('rotate-180');
+  });
+
+  categoriesToggleBtn.addEventListener('click', () => {
+    categoriesMenu.classList.toggle('hidden');
+    categoriesArrow.classList.toggle('rotate-180');
+  });
+</script>
+
+
+
+
+  </body>
+</html>

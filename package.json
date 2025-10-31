@@ -1,0 +1,22 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tailwind": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.16",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.0",
+    "pg": "^8.16.3",
+    "tailwindcss": "^4.1.16"
+  }
+}

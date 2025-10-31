@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/output.css" rel="stylesheet">
+    <title><%= title %></title>
+  </head>
+  <body class="min-h-screen flex items-center flex-col space-y-4 bg-amber-50 py-10 px-4">
+    <h1 class="text-2xl"><%= title %></h1>
+    
+    <form class="flex flex-col py-12 px-6 space-y-2 bg-amber-100 rounded max-w-md w-full sm:p-12" action="/items/<%= item.id %>/update" method="POST">
+      <label for="name">Item name</label>
+      <input class="p-1 outline-blue-300 border-amber-300 border rounded bg-amber-50" type="text" name="name" id="name" value="<%= item.name %>" />
+
+      <label for="price">Price</label>
+      <input class="p-1 outline-blue-300 border-amber-300 border rounded bg-amber-50" type="number" id="price" name="price" value="<%= item.price %>" />
+
+      <label for="quantity">Quantity</label>
+      <input class="p-1 outline-blue-300 border-amber-300 border rounded bg-amber-50" type="number" id="quantity" name="quantity" value="<%= item.quantity %>" />
+
+      <div class="my-2 bg-amber-50 p-2 rounded flex flex-col space-y-1">
+        <p class="mb-2 text-center"><b>Categories</b></p>
+        <% if(categories.length !== 0) { %>
+        <% categories.forEach(category => { %>
+          <label for="<%= category %>" class="inline-flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md cursor-pointer hover:bg-gray-100 transition">
+            <input type="checkbox" value="<%= category %>" name="categories[]" id="<%= category %>" <%= item.categories.includes(category) ? 'checked' : '' %> class="form-checkbox h-5 w-5 text-blue-600 focus:ring-blue-500 focus:outline-none">
+            <span class="text-sm text-gray-700"><%= category %></span>
+          </label>
+        <% }) %>
+        <% } else { %>
+         <p class="text-sm text-center text-gray-800">This item has no categories,try adding one !</p>
+         <% } %>
+       </div>
+            
+  <% if (locals.errors && locals.errors.length > 0) { %>
+    <div class="bg-amber-50 text-red-500 p-3 rounded space-y-1">
+      <p class="text-gray-800">Your input is invalid , please fix the following : </p>
+      <ul class="list-inside flex flex-col">
+        <% errors.forEach(error => { %>
+          <li> - <%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+  <% } %>
+            <div class="flex space-x-1">
+      <button class="my-4 bg-green-400 text-white p-2 rounded cursor-pointer hover:bg-green-500 transition-all duration-300 ease-in-out focus:outline-green-500 outline-2 outline-offset-2 grow" type="submit">Submit</button>
+      <a class="my-4 border-2 border-green-400 text-green-400 p-2 rounded cursor-pointer transition-all duration-300 ease-in-out focus:outline-green-500 grow text-center hover:bg-green-500 hover:text-white focus:outline-2" href="/">Cancel</a>
+      </div>
+    </form>
+
+        <div class="max-w-md w-full">
+      <p class="text-gray-700">Didn't find suitable category? , add new one now !</p>
+      <a class="my-2 inline-block bg-blue-400 text-white rounded px-4 py-2 hover:bg-blue-500 transition-all duration-300 ease-in-out outline-2 outline-offset-2 outline-none focus:outline-blue-500" href="/categories/add">New Category</a>
+    </div>
+  </body>
+</html>
