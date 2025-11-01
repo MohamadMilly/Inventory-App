@@ -1,5 +1,8 @@
 const { validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries");
+const path = require("path");
+
+const addCategoryPath = path.join(__dirname, "addCategory");
 
 async function allItemsGet(req, res) {
   const links = await db.getCategories();
@@ -33,7 +36,7 @@ async function addCategoryPost(req, res) {
   const errors = validationResult(req);
   const referrer = req.get("Referer");
   if (!errors.isEmpty()) {
-    return res.render("addCategory", {
+    return res.render(addCategoryPath, {
       title: "New category",
       errors: errors.array(),
     });

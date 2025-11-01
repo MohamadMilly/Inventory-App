@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tailwind": "npx @tailwindcss/cli -i ./public/input.css -o ./public/output.css --watch",
-    "start": "node app.js"
+    "start": "set NODE_TLS_REJECT_UNAUTHORIZED='0' && node app.js"
   },
   "keywords": [],
   "author": "",
