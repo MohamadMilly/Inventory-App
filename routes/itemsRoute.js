@@ -39,6 +39,7 @@ const validateItem = [
     .withMessage(quantityRequiredError)
     .isInt({ min: 1 })
     .withMessage(quantityIntegerError),
+  body("categories").optional().isArray(),
 ];
 
 itemsRouter.get("/add", itemsController.addItemGet);

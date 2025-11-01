@@ -20,7 +20,7 @@ async function addItemPost(req, res) {
     });
   }
   const { name, price, quantity, categories } = matchedData(req);
-  await db.addItem(name, price, quantity, categories);
+  await db.addItem(name, price, quantity, categories ? categories : []);
   res.redirect("/");
 }
 

@@ -40,12 +40,7 @@ async function addCategoryPost(req, res) {
   }
   const { newCategory } = matchedData(req);
   await db.addCategory(newCategory);
-
-  if (referrer) {
-    return res.redirect(referrer);
-  } else {
-    return res.redirect("/");
-  }
+  return res.redirect("/");
 }
 module.exports = {
   allItemsGet,
