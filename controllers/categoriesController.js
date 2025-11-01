@@ -27,7 +27,7 @@ async function deleteCategoryPost(req, res) {
   res.redirect("/");
 }
 async function addCategoryGet(req, res) {
-  res.render("addcategory", { title: "New category" });
+  res.render("addCategory", { title: "New category" });
 }
 async function addCategoryPost(req, res) {
   const errors = validationResult(req);
