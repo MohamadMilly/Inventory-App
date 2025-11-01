@@ -33,7 +33,7 @@ async function addCategoryPost(req, res) {
   const errors = validationResult(req);
   const referrer = req.get("Referer");
   if (!errors.isEmpty()) {
-    return res.render(addCategoryPath, {
+    return res.render("addCategory", {
       title: "New category",
       errors: errors.array(),
     });
