@@ -1,8 +1,5 @@
 const { validationResult, matchedData } = require("express-validator");
 const db = require("../db/queries");
-const path = require("path");
-
-const addCategoryPath = path.join(__dirname, "addCategory");
 
 async function allItemsGet(req, res) {
   const links = await db.getCategories();
