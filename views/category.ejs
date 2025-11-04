@@ -25,7 +25,7 @@
                 <p>Quantity : <%= item.quantity %></p>
                 <p class="my-2 flex flex-wrap gap-1">
                   <% if(item.categories) { %> 
-                <% item.categories.map((ItemCategory,index) => { %>
+                <% item.categories.forEach((ItemCategory,index) => { %>
                  <span style="background-color: hsl(<%= index * 40 %>, 70%, 85%)" class="text-gray-900 px-2 py-1 rounded text-sm"><%= ItemCategory %></span>
                 <% }) %>
                 <% } else { %>
