@@ -73,7 +73,7 @@ async function addItem(name, price, quantity, categories) {
   );
 
   const insertedId = newItem.rows[0].id;
-  categories.map(async (category) => {
+  const promises = categories.map(async (category) => {
     const doesCategoryExist =
       (
         await pool.query(
@@ -96,6 +96,7 @@ async function addItem(name, price, quantity, categories) {
       [insertedId, categoryId]
     );
   });
+  await Promise.all(promises);
 }
 
 async function addCategory(category) {
@@ -113,7 +114,7 @@ async function updateItem(id, name, price, quantity, categories) {
   );
   /* reset the relations of the item to add the new one */
   await pool.query("DELETE FROM relation WHERE item_id  = $1", [id]);
-  categories.map(async (category) => {
+  const promises = categories.map(async (category) => {
     const doesCategoryExist =
       (
         await pool.query(
@@ -138,6 +139,7 @@ async function updateItem(id, name, price, quantity, categories) {
       [id, categoryId]
     );
   });
+  await Promise.all(promises);
 }
 
 async function deleteItem(id) {

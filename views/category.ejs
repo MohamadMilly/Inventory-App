@@ -15,7 +15,7 @@
     <section class="bg-gray-50 my-4 p-4">
         <ul class="flex flex-wrap gap-2 justify-center">
            <% if(items.length !== 0) { %>
-            <% items.map(item => { %>
+            <% items.forEach(item => { %>
              <li class="px-4 py-5 bg-amber-100 rounded w-96 shadow-sm">
                 <h3 class="flex items-center space-x-2 mb-2">
                   <svg class="fill-amber-600" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"><path d="M856-390 570-104q-12 12-27 18t-30 6q-15 0-30-6t-27-18L103-457q-11-11-17-25.5T80-513v-287q0-33 23.5-56.5T160-880h287q16 0 31 6.5t26 17.5l352 353q12 12 17.5 27t5.5 30q0 15-5.5 29.5T856-390ZM513-160l286-286-353-354H160v286l353 354ZM260-640q25 0 42.5-17.5T320-700q0-25-17.5-42.5T260-760q-25 0-42.5 17.5T200-700q0 25 17.5 42.5T260-640Zm220 160Z"/></svg>
@@ -24,8 +24,8 @@
                 <p>Price : <%= item.price %>$</p>
                 <p>Quantity : <%= item.quantity %></p>
                 <p class="my-2 flex flex-wrap gap-1">
-                  <% if(item.categories) { %> 
-                <% item.categories.forEach((ItemCategory,index) => { %>
+                  <% if(item.categories) { %>
+                <% item.categories.forEach(async (ItemCategory,index) => { %>
                  <span style="background-color: hsl(<%= index * 40 %>, 70%, 85%)" class="text-gray-900 px-2 py-1 rounded text-sm"><%= ItemCategory %></span>
                 <% }) %>
                 <% } else { %>
